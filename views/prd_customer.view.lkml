@@ -43,6 +43,7 @@ view: prd_customer {
   }
 
   dimension: customer_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.CustomerID ;;
   }

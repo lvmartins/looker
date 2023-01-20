@@ -47,6 +47,7 @@ view: prd_store {
   }
 
   dimension: store_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.StoreID ;;
   }

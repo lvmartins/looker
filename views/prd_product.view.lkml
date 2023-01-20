@@ -93,6 +93,7 @@ view: prd_product {
   }
 
   dimension: product_key {
+    primary_key: yes
     type: string
     sql: ${TABLE}.Product_key ;;
   }

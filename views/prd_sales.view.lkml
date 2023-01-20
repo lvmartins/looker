@@ -47,6 +47,7 @@ view: prd_sales {
   }
 
   dimension: sale_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.SaleId ;;
   }
@@ -101,6 +102,13 @@ view: prd_sales {
 
   measure: count {
     type: count
+    drill_fields: []
+  }
+
+  measure: sales_per_costumer {
+    type: sum
+    sql:  ${amount} ;;
+    value_format_name:  usd_0
     drill_fields: []
   }
 }

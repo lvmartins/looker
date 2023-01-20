@@ -13,6 +13,7 @@ persist_with: bi4all_training_default_datagroup
 explore: prd_store {}
 
 explore: dashboard_view {
+  hidden: yes
   join: dashboard_view__stores {
     view_label: "Dashboard View: Stores"
     sql: LEFT JOIN UNNEST(${dashboard_view.stores}) as dashboard_view__stores ;;
@@ -40,10 +41,14 @@ explore: dashboard_view {
 
 explore: prd_sales {}
 
-explore: opt_prd_customer_di_dynamic {}
+explore: opt_prd_customer_di_dynamic {
+  hidden: yes
+}
+
+explore: opt_prd_customer_di_static {
+  hidden: yes
+}
 
 explore: prd_customer {}
 
 explore: prd_product {}
-
-explore: opt_prd_customer_di_static {}
