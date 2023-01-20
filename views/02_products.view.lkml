@@ -1,16 +1,10 @@
-view: prd_customer {
-  sql_table_name: `BI4ALL_Training_prd.prd_customer`
+view: products {
+  sql_table_name: `BI4ALL_Training_prd.prd_product`
     ;;
 
-  dimension: address {
+  dimension: category {
     type: string
-    sql: ${TABLE}.Address ;;
-  }
-
-  dimension: country {
-    type: string
-    map_layer_name: countries
-    sql: ${TABLE}.Country ;;
+    sql: ${TABLE}.Category ;;
   }
 
   dimension_group: creation_date {
@@ -25,37 +19,6 @@ view: prd_customer {
       year
     ]
     sql: ${TABLE}.CreationDateTime ;;
-  }
-
-  dimension_group: customer_birthdate {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.CustomerBirthdate ;;
-  }
-
-  dimension: customer_id {
-    primary_key: yes
-    type: number
-    sql: ${TABLE}.CustomerID ;;
-  }
-
-  dimension: customer_key {
-    type: string
-    sql: ${TABLE}.Customer_key ;;
-  }
-
-  dimension: customer_name {
-    type: string
-    sql: ${TABLE}.CustomerName ;;
   }
 
   dimension_group: dbt_updated {
@@ -100,6 +63,11 @@ view: prd_customer {
     sql: ${TABLE}.dbt_valid_to ;;
   }
 
+  dimension: department {
+    type: string
+    sql: ${TABLE}.Department ;;
+  }
+
   dimension: file_extract_timestamp {
     type: string
     sql: ${TABLE}.FileExtractTimestamp ;;
@@ -119,14 +87,20 @@ view: prd_customer {
     sql: ${TABLE}.LastUpdateDateTime ;;
   }
 
-  dimension: mobile_phone {
-    type: string
-    sql: ${TABLE}.MobilePhone ;;
+  dimension: product_id {
+    type: number
+    sql: ${TABLE}.ProductID ;;
   }
 
-  dimension: postal_code {
+  dimension: product_key {
+    primary_key: yes
     type: string
-    sql: ${TABLE}.PostalCode ;;
+    sql: ${TABLE}.Product_key ;;
+  }
+
+  dimension: product_name {
+    type: string
+    sql: ${TABLE}.ProductName ;;
   }
 
   dimension_group: uploaded {
@@ -144,8 +118,24 @@ view: prd_customer {
     sql: ${TABLE}.UploadedAt ;;
   }
 
+############# MEASURES #############
+
   measure: count {
     type: count
-    drill_fields: [customer_name]
+    drill_fields: [product_name]
   }
+
+  measure: category_count {
+    label: "Category Count"
+    type:  count_distinct
+    sql:  ${category} ;;
+  }
+
+  measure: department_count {
+    label: "Department Count"
+    type:  count_distinct
+    sql: ${department};;
+  }
+
+
 }

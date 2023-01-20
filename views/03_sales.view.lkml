@@ -1,6 +1,5 @@
-view: prd_sales {
-  sql_table_name: `BI4ALL_Training_prd.prd_sales`
-    ;;
+view: sales {
+  sql_table_name: `BI4ALL_Training_prd.prd_sales` ;;
 
   dimension: amount {
     type: number
@@ -102,13 +101,19 @@ view: prd_sales {
 
   measure: count {
     type: count
-    drill_fields: []
   }
 
-  measure: sales_per_costumer {
+  measure: total_sales {
     type: sum
     sql:  ${amount} ;;
     value_format_name:  usd_0
-    drill_fields: []
   }
+
+  measure: avg_sales {
+    type: average
+    sql:  ${amount} ;;
+    value_format_name:  usd_0
+  }
+
+
 }

@@ -1,4 +1,4 @@
-view: prd_store {
+view: stores {
   sql_table_name: `BI4ALL_Training_prd.prd_store`
     ;;
 
@@ -77,8 +77,10 @@ view: prd_store {
     sql: ${TABLE}.uploaded_at ;;
   }
 
+  ############ MEASURES ##########
   measure: count {
     type: count
     drill_fields: [store_name]
   }
+
 }

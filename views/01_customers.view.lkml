@@ -1,10 +1,15 @@
-view: prd_product {
-  sql_table_name: `BI4ALL_Training_prd.prd_product`
-    ;;
+view: customers {
+  sql_table_name: `BI4ALL_Training_prd.prd_customer`;;
 
-  dimension: category {
+  dimension: address {
     type: string
-    sql: ${TABLE}.Category ;;
+    sql: ${TABLE}.Address ;;
+  }
+
+  dimension: country {
+    type: string
+    map_layer_name: countries
+    sql: ${TABLE}.Country ;;
   }
 
   dimension_group: creation_date {
@@ -19,6 +24,37 @@ view: prd_product {
       year
     ]
     sql: ${TABLE}.CreationDateTime ;;
+  }
+
+  dimension_group: customer_birthdate {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.CustomerBirthdate ;;
+  }
+
+  dimension: customer_id {
+    primary_key: yes
+    type: number
+    sql: ${TABLE}.CustomerID ;;
+  }
+
+  dimension: customer_key {
+    type: string
+    sql: ${TABLE}.Customer_key ;;
+  }
+
+  dimension: customer_name {
+    type: string
+    sql: ${TABLE}.CustomerName ;;
   }
 
   dimension_group: dbt_updated {
@@ -63,11 +99,6 @@ view: prd_product {
     sql: ${TABLE}.dbt_valid_to ;;
   }
 
-  dimension: department {
-    type: string
-    sql: ${TABLE}.Department ;;
-  }
-
   dimension: file_extract_timestamp {
     type: string
     sql: ${TABLE}.FileExtractTimestamp ;;
@@ -87,22 +118,15 @@ view: prd_product {
     sql: ${TABLE}.LastUpdateDateTime ;;
   }
 
-  dimension: product_id {
-    type: number
-    sql: ${TABLE}.ProductID ;;
-  }
-
-  dimension: product_key {
-    primary_key: yes
+  dimension: mobile_phone {
     type: string
-    sql: ${TABLE}.Product_key ;;
+    sql: ${TABLE}.MobilePhone ;;
   }
 
-  dimension: product_name {
+  dimension: postal_code {
     type: string
-    sql: ${TABLE}.ProductName ;;
+    sql: ${TABLE}.PostalCode ;;
   }
-
   dimension_group: uploaded {
     type: time
     timeframes: [
@@ -118,8 +142,32 @@ view: prd_product {
     sql: ${TABLE}.UploadedAt ;;
   }
 
+
+  dimension: age {
+    label: "Age"
+    type:  number
+    sql:  TRUNC(TIMESTAMP_DIFF(CURRENT_TIMESTAMP(), CAST(${customer_birthdate_date} as TIMESTAMP), DAY) / 365);;
+  }
+
+  dimension: age_tier {
+    label: "Age Tier"
+    type: tier
+    tiers: [0, 10, 20, 30, 40, 50, 60, 70]
+    style: integer
+    sql: ${age} ;;
+  }
+
+
+
+
+########### MEASURES ##########
+
   measure: count {
     type: count
-    drill_fields: [product_name]
+    drill_fields: [customer_name]
   }
+
+
+
+
 }
