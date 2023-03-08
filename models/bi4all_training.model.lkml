@@ -22,7 +22,7 @@ explore: sales {
   }
 
   join: stores {
-    type: left_outer
+    type: inner
     view_label: "Stores"
     relationship: many_to_one
     sql_on:  ${sales.store_id} = ${stores.store_id} ;;
@@ -35,12 +35,12 @@ explore: sales {
     sql_on:  ${sales.customer_id} = ${customers.customer_id} ;;
   }
 
-  # join: customer_sales_fct {
-  #   type: left_outer
-  #   view_label: "Customers Facts"
-  #   relationship: many_to_one
-  #   sql_on:  ${sales.customer_id} = ${customer_sales_fct.customer_id} ;;
-  # }
+  join: customer_sales_fct {
+    type: left_outer
+    view_label: "Customers Facts"
+    relationship: many_to_one
+    sql_on:  ${sales.customer_id} = ${customer_sales_fct.customer_id} ;;
+  }
 
 }
 

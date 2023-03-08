@@ -13,11 +13,12 @@ view: customer_sales_fct {
         FROM BI4ALL_Training_prd.prd_sales
         GROUP BY CustomerID
       ;;
-      datagroup_trigger: bi4all_training_etl
+      # datagroup_trigger: bi4all_training_etl
     }
 
   dimension: customer_id {
     label: "Customer ID"
+    primary_key: yes
     type: number
     sql: ${TABLE}.customer_id ;;
   }

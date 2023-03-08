@@ -125,17 +125,4 @@ view: products {
     drill_fields: [product_name]
   }
 
-  measure: category_count {
-    label: "Category Count"
-    type:  count_distinct
-    sql:  ${category} ;;
-  }
-
-  measure: department_count {
-    label: "Department Count"
-    type:  count_distinct
-    sql: ${department};;
-  }
-
-
 }
