@@ -29,7 +29,7 @@ explore: sales {
   }
 
   join: customers {
-    type: left_outer
+    type: full_outer
     view_label: "Customers"
     relationship: many_to_one
     sql_on:  ${sales.customer_id} = ${customers.customer_id} ;;

@@ -20,7 +20,7 @@ view: customer_sales_fct {
     label: "Customer ID"
     primary_key: yes
     type: number
-    sql: ${TABLE}.customer_id ;;
+    sql: ${TABLE}.CustomerID ;;
   }
 
 
@@ -72,6 +72,19 @@ view: customer_sales_fct {
     value_format_name: usd
     sql: ${TABLE}.lifetime_revenue ;;
   }
+
+  measure: count {
+    type: count
+    html:
+    {% if value > 100 %}
+    <span style="color:darkgreen;">{{ rendered_value }}</span>
+    {% elsif value > 50 %}
+    <span style="color:goldenrod;">{{ rendered_value }}</span>
+    {% else %}
+    <span style="color:darkred;">{{ rendered_value }}</span>
+    {% endif %} ;;
+  }
+
 
 
 }
