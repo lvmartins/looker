@@ -57,25 +57,25 @@ explore: dashboard_view {
   label: "(2) Country Metrics"
   join: dashboard_view__stores {
     view_label: "Dashboard View: Stores"
-    sql: INNER JOIN UNNEST(${dashboard_view.stores}) as dashboard_view__stores ;;
+    sql: LEFT JOIN UNNEST(${dashboard_view.stores}) as dashboard_view__stores ;;
     relationship: one_to_many
   }
 
   join: dashboard_view__stores__departments {
     view_label: "Dashboard View: Stores Departments"
-    sql: INNER JOIN UNNEST(${dashboard_view__stores.departments}) as dashboard_view__stores__departments ;;
+    sql: LEFT JOIN UNNEST(${dashboard_view__stores.departments}) as dashboard_view__stores__departments ;;
     relationship: one_to_many
   }
 
   join: dashboard_view__stores__departments__categories {
     view_label: "Dashboard View: Stores Departments Categories"
-    sql: INNER JOIN UNNEST(${dashboard_view__stores__departments.categories}) as dashboard_view__stores__departments__categories ;;
+    sql: LEFT JOIN UNNEST(${dashboard_view__stores__departments.categories}) as dashboard_view__stores__departments__categories ;;
     relationship: one_to_many
   }
 
   join: dashboard_view__stores__departments__categories__products {
     view_label: "Dashboard View: Stores Departments Categories Products"
-    sql: INNER JOIN UNNEST(${dashboard_view__stores__departments__categories.products}) as dashboard_view__stores__departments__categories__products ;;
+    sql: LEFT JOIN UNNEST(${dashboard_view__stores__departments__categories.products}) as dashboard_view__stores__departments__categories__products ;;
     relationship: one_to_many
   }
 }

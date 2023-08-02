@@ -14,7 +14,7 @@ view: dashboard_view {
   }
 
   dimension: stores {
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.Stores ;;
   }
 
