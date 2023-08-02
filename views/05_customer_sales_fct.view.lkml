@@ -76,7 +76,7 @@ view: customer_sales_fct {
   measure: count {
     type: count
     html:
-    {% if value > 100 %}
+    {% if value > 180 %}
     <span style="color:darkgreen;">{{ rendered_value }}</span>
     {% elsif value > 50 %}
     <span style="color:goldenrod;">{{ rendered_value }}</span>
