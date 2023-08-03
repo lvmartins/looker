@@ -1,6 +1,6 @@
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
 explore: dashboard_nested_table {
-  hidden: yes
+  hidden: no
     join: dashboard_nested_table__stores {
       view_label: "Dashboard Nested Table: Stores"
       sql: LEFT JOIN UNNEST(${dashboard_nested_table.stores}) as dashboard_nested_table__stores ;;
