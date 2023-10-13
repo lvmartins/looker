@@ -10,6 +10,7 @@ view: customers {
     type: string
     map_layer_name: countries
     sql: ${TABLE}.Country ;;
+    required_access_grants: [can_see_country]
   }
 
   dimension_group: creation_date {
@@ -70,6 +71,8 @@ view: customers {
     ]
     sql: ${TABLE}.dbt_updated_at ;;
   }
+
+
 
   dimension_group: dbt_valid_from {
     type: time

@@ -10,6 +10,11 @@ datagroup: bi4all_training_etl {
 
 persist_with: bi4all_training_etl
 
+access_grant: can_see_country {
+  user_attribute: can_see_country
+  allowed_values: ["yes"]
+}
+
 explore: sales {
   label: "(1) Sales, Products and Customers"
   view_name:  sales
