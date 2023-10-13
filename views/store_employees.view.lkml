@@ -1,6 +1,6 @@
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
 explore: store_employees {
-  hidden: yes
+  hidden: no
     join: store_employees__employees {
       view_label: "Store Employees: Employees"
       sql: LEFT JOIN UNNEST(${store_employees.employees}) as store_employees__employees ;;
