@@ -152,13 +152,13 @@ view: customers {
     sql:  TRUNC(TIMESTAMP_DIFF(CURRENT_TIMESTAMP(), CAST(${customer_birthdate_date} as TIMESTAMP), DAY) / 365);;
   }
 
-  # dimension: age_tier {
-  #   label: "Age Tier"
-  #   type: tier
-  #   tiers: [0, 10, 20, 30, 40, 50, 60, 70]
-  #   style: integer
-  #   sql: ${age} ;;
-  # }
+  dimension: age_tier {
+    label: "Age Tier"
+    type: tier
+    tiers: [0, 10, 20, 30, 40, 50, 60, 70]
+    style: integer
+    sql: ${age} ;;
+  }
 
 
 
