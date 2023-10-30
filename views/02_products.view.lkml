@@ -92,11 +92,11 @@ view: products {
     sql: ${TABLE}.ProductID ;;
   }
 
-  # dimension: product_key {
-  #   primary_key: yes
-  #   type: string
-  #   sql: ${TABLE}.Product_key ;;
-  # }
+  dimension: product_key {
+    primary_key: yes
+    type: string
+    sql: ${TABLE}.Product_key ;;
+  }
 
   dimension: product_name {
     type: string
