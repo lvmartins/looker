@@ -10,7 +10,7 @@ view: customers {
     type: string
     map_layer_name: countries
     sql: ${TABLE}.Country ;;
-    required_access_grants: [can_see_country]
+    # required_access_grants: [can_see_country]
   }
 
   dimension_group: creation_date {
